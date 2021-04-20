@@ -123,6 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="algoritms.h" />
+    <ClInclude Include="generation.h" />
+    <ClInclude Include="output.h" />
+    <ClInclude Include="timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="algoritms.cpp" />
+    <ClCompile Include="generation.cpp" />
+    <ClCompile Include="output.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

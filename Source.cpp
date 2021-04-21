@@ -11,18 +11,20 @@ Labb 2
 #include "timer.h"
 #include <iostream>
 int main() {
+	srand(time(NULL));
+
 	Timer timer = Timer();
 
 	Generation gen = Generation();
-	gen.randomValues(1000);
-	//gen.printArray(gen.randomArray);
+	gen.randomValues(100000);
+	//gen.printArray(gen.dataArray);
 
 
 	Algoritm alg = Algoritm();
 	timer.start();
 	alg.insertionSort(gen.dataArray, gen.size);
 	timer.stop();
-	//gen.printArray(gen.randomArray);
+	//gen.printArray(gen.dataArray);
 
-	std::cout << timer.elapsed_seconds.count() << std::endl;
+	std::cout << timer.elapsed_seconds.count() << "s " << std::endl;
 }

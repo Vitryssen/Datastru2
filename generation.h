@@ -7,19 +7,21 @@ Labb 2
 */
 #ifndef GENERATION_H
 #define GENERATION_H
-//monotont stigande
-//monotont fallande
-//konstant värde
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 class Generation {
 public:
-	//slumpdata ex rand
-	int* randomArray = 0;
+	int* dataArray = 0;
 	int size;
+	//slumpdata ex rand
 	void randomValues(int numberOfValues);
-	void monotonicRising(int numberOfValues);
+	//monotont stigande
+	void monotonicIncreasing(int numberOfValues);
+	//monotont fallande
+	void monotonicDecreasing(int numberOfValues);
+	//konstant värde
+	void constantValue(int numberOfValues);
 	void printArray(int[]);
 };
 #endif

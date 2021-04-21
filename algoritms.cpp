@@ -33,13 +33,17 @@ void Algoritm::swap(int* minimum, int* first)
 }
 bool Algoritm::isMonotonic(bool rising, int arr[], int size)
 {
-	int prev = 0;
+	int prev;
 	for (int i = 0; i < size; i++) {
 		if (rising) {
+			if (i == 0)
+				prev = 0;
 			if (arr[i] < prev)
 				return false;
 		}
 		else {
+			if (i == 0)
+				prev = INT_MAX;
 			if (arr[i] > prev)
 				return false;
 		}

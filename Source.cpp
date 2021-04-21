@@ -14,17 +14,13 @@ int main() {
 	Timer timer = Timer();
 
 	Generation gen = Generation();
-	gen.monotonicRising(100000);
+	gen.randomValues(1000);
 	//gen.printArray(gen.randomArray);
 
 
 	Algoritm alg = Algoritm();
-	if (alg.isMonotonic(true, gen.randomArray, gen.size)) 
-		std::cout << "Is monotonic" << std::endl;
-	else
-		std::cout << "Not monotonic" << std::endl;
 	timer.start();
-	alg.selectionSort(gen.randomArray, gen.size);
+	alg.insertionSort(gen.dataArray, gen.size);
 	timer.stop();
 	//gen.printArray(gen.randomArray);
 

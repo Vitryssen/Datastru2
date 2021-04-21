@@ -7,6 +7,7 @@ Labb 2
 */
 #ifndef ALGORITMS_H
 #define ALGORITMS_H
+#include <climits>
 class Algoritm {
 public:
 	//Insertion sort Knuth https://en.wikipedia.org/wiki/Insertion_sort

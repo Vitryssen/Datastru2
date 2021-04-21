@@ -10,24 +10,43 @@ Labb 2
 void Generation::randomValues(int numberOfValues)
 {
 	this->size = numberOfValues;
-	this->randomArray = new int[numberOfValues];
+	this->dataArray = new int[numberOfValues];
 	for (int i = 0; i < numberOfValues; i++) {
-		this->randomArray[i] = rand();
+		this->dataArray[i] = rand();
 	}
 }
 
-void Generation::monotonicRising(int numberOfValues)
+void Generation::monotonicIncreasing(int numberOfValues)
 {
 	this->size = numberOfValues;
-	this->randomArray = new int[numberOfValues];
+	this->dataArray = new int[numberOfValues];
 
 	for (int i = 0; i < numberOfValues; i++) {
 		if (i == 0)
-			randomArray[i] = 0;
+			dataArray[i] = 0;
 		else
-			randomArray[i] = rand() % 10 + randomArray[i - 1];
+			dataArray[i] = rand() % 10 + dataArray[i - 1];
 	}
-	std::cout << randomArray[size-1] << std::endl;
+}
+
+void Generation::monotonicDecreasing(int numberOfValues)
+{
+	this->size = numberOfValues;
+	this->dataArray = new int[numberOfValues];
+	for (int i = 0; i < numberOfValues; i++) {
+		if (i == 0)
+			dataArray[i] = INT_MAX;
+		else
+			dataArray[i] = dataArray[i - 1] - (rand() % 10);
+	}
+}
+
+void Generation::constantValue(int numberOfValues)
+{
+	int constantValue = rand();
+	this->dataArray = new int[numberOfValues];
+	for (int i = 0; i < numberOfValues; i++)
+		dataArray[i] = constantValue;
 }
 
 void Generation::printArray(int arr[])

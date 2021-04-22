@@ -16,15 +16,15 @@ int main() {
 	Timer timer = Timer();
 
 	Generation gen = Generation();
-	gen.randomValues(100000);
-	//gen.printArray(gen.dataArray);
+	gen.randomValues(10);
+	gen.printArray(gen.dataArray);
 
 
 	Algoritm alg = Algoritm();
 	timer.start();
-	alg.insertionSort(gen.dataArray, gen.size);
+	alg.quickSort(gen.dataArray, 0,gen.size-1, true);
 	timer.stop();
-	//gen.printArray(gen.dataArray);
+	gen.printArray(gen.dataArray);
 
 	std::cout << timer.elapsed_seconds.count() << "s " << std::endl;
 }

@@ -7,17 +7,18 @@ Labb 2
 */
 #include "algoritms.h"
 #include <iostream>
-int Algoritm::medianPivot(int low, int arr[], int high) {
-	int a = arr[low];
-	int b = arr[(high - low) / 2 + low];
-	int c = arr[high];
-
-    if ((a < b && b < c) || (c < b && b < a))
-       return b;
-    else if ((b < a && a < c) || (c < a && a < b))
-       return a;
-    else
-       return c;
+#include <chrono>
+int Algoritm::medianPivot(int low, int list[], int high) {
+	//Get middle index
+	int mid = (low + high) / 2;
+	if (list[mid] < list[low])
+		swap(&list[low], &list[mid]);
+	if (list[high] < list[low])
+		swap(&list[low], &list[high]);
+	if (list[mid] < list[high])
+		swap(&list[mid], &list[high]);
+	//This swaps the median to list[high] which we then use to pivot
+	return list[high];
 }
 void Algoritm::insertionSort(int arr[], int size)
 {
@@ -48,8 +49,7 @@ void Algoritm::quickSort(int arr[], int low, int high, bool median)
 {
 	if (low < high)
 	{
-		/* pi is partitioning index, arr[pi] is now
-		at right place */
+		// pi is partitioning index, arr[pi] is now at right place
 		int pi = partition(arr, low, high, median);
 
 		// Separately sort elements before
@@ -60,12 +60,17 @@ void Algoritm::quickSort(int arr[], int low, int high, bool median)
 }
 int Algoritm::partition(int arr[], int low, int high, bool median)
 {
-	int pivot;
-	if(median)
+	int pivot, i;
+	if (median)
+	{
 		pivot = medianPivot(low, arr, high); // median-of-three pivot
+		i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+	}
 	else
-		pivot = arr[high]; // pivot
-	int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+	{
+		pivot = arr[high]; // right side pivot
+		i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+	}
 
 	for (int j = low; j <= high - 1; j++)
 	{
@@ -103,16 +108,15 @@ void Algoritm::selectionSort(int arr[], int size)
 {
 	int min_idx;
 
-	// One by one move boundary of unsorted subarray 
 	for (int i = 0; i < size - 1; i++)
 	{
-		// Find the minimum element in unsorted array 
+		// Find the index of the smallest value
 		min_idx = i;
 		for (int j = i + 1; j < size; j++)
 			if (arr[j] < arr[min_idx])
 				min_idx = j;
 
-		// Swap the found minimum element with the first element 
+		// Swap the found index with the first element
 		swap(&arr[min_idx], &arr[i]);
 	}
 }

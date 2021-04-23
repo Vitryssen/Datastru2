@@ -45,6 +45,14 @@ void Algoritm::swap(int* minimum, int* first)
 	*minimum = *first;
 	*first = temp;
 }
+double Algoritm::getStandardDeviation(std::vector<double> times, double avg)
+{
+	double standardDeviation = 0.0;
+	for (int i = 0; i < times.size(); ++i)
+		standardDeviation += pow(times.at(i) - avg, 2);
+
+	return sqrt(standardDeviation / times.size());
+}
 void Algoritm::quickSort(int arr[], int low, int high, bool median)
 {
 	if (low < high)

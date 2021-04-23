@@ -18,12 +18,20 @@ Vanliga misstag är
 #ifndef TIMER_H
 #define TIMER_H
 #include <chrono>
+#include "algoritms.h"
+#include "generation.h"
+#include <vector>
 class Timer {
 	public:
 		std::chrono::time_point<std::chrono::system_clock> startTime;
 		std::chrono::time_point<std::chrono::system_clock> endTime;
-		std::chrono::duration<double> elapsed_seconds;
+		std::chrono::duration<double> elapsedSeconds;
+		double avg;
+		double stdDev;
+		int size;
+		std::vector<double> serie;
 		void start();
 		void stop();
+		void timeInterval(int startSize, int times, int samples, int sortFunc);
 };
 #endif

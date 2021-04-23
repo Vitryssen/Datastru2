@@ -10,6 +10,7 @@ Labb 2
 #include <climits>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 class Algoritm {
 public:
 	//Insertion sort Knuth https://en.wikipedia.org/wiki/Insertion_sort
@@ -25,5 +26,6 @@ public:
 	//Others
 	bool isMonotonic(bool rising, int arr[], int size);
 	void swap(int* xp, int* yp);
+	double getStandardDeviation(std::vector<double> times, double avg);
 };
 #endif

@@ -14,17 +14,6 @@ int main() {
 	srand(time(NULL));
 
 	Timer timer = Timer();
+	timer.timeInterval(20000, 10, 5, 0);
 
-	Generation gen = Generation();
-	gen.randomValues(10);
-	gen.printArray(gen.dataArray);
-
-
-	Algoritm alg = Algoritm();
-	timer.start();
-	alg.quickSort(gen.dataArray, 0,gen.size-1, true);
-	timer.stop();
-	gen.printArray(gen.dataArray);
-
-	std::cout << timer.elapsed_seconds.count() << "s " << std::endl;
 }

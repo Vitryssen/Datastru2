@@ -33,10 +33,10 @@ void insertionSort(std::vector<int>* vector)
 		of their current position */
 		while (index >= 0 && vector->at(index) > key)
 		{
-			vector->at(index+1) = vector->at(index);
+			vector->at(index+1.0) = vector->at(index);
 			index = index - 1;
 		}
-		vector->at(index+1) = key;
+		vector->at(index+1.0) = key;
 	}
 }
 void quickSort(std::vector<int>* vector, int low, int high, bool median)
@@ -54,17 +54,12 @@ void quickSort(std::vector<int>* vector, int low, int high, bool median)
 }
 int partition(std::vector<int>* vector, int low, int high, bool median)
 {
-	int pivot, i;
+	int pivot;
 	if (median)
-	{
 		pivot = medianPivot(low, vector, high); // median-of-three pivot
-		i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
-	}
 	else
-	{
 		pivot = vector->at(high); // right side pivot
-		i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
-	}
+	int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
 
 	for (int j = low; j <= high - 1; j++)
 	{
@@ -75,7 +70,7 @@ int partition(std::vector<int>* vector, int low, int high, bool median)
 			std::swap(vector->at(i), vector->at(j));
 		}
 	}
-	std::swap(vector->at(i+1), vector->at(high));
+	std::swap(vector->at(i+1.0), vector->at(high));
 	return (i + 1);
 }
 void selectionSort(std::vector<int>* vector)

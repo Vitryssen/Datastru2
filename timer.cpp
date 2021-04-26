@@ -14,11 +14,11 @@ void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int 
 	std::string fileName3 = "quickSort.data";
 	std::string fileName4 = "quickSortMed.data";
 	std::string fileName5 = "stdSort.data";
-	auto insSort = [](std::vector<int>* random) {insertionSort(random); };
-	auto selSort = [](std::vector<int>* random) {selectionSort(random); };
-	auto qSort = [](std::vector<int>* random) {quickSort(random, 0, random->size()-1, false); };
-	auto qSortMed = [](std::vector<int>* random) {quickSort(random, 0, random->size() - 1, true); };
-	//auto sort_funk5 = [](std::vector<int>* random) {std::sort(random->begin(), random->end()); };
+	auto insSort = [](std::vector<int>* vector) {insertionSort(vector); };
+	auto selSort = [](std::vector<int>* vector) {selectionSort(vector); };
+	auto qSort = [](std::vector<int>* vector) {quickSort(vector, 0, vector->size()-1, false); };
+	auto qSortMed = [](std::vector<int>* vector) {quickSort(vector, 0, vector->size() - 1, true); };
+	auto stdSort = [](std::vector<int>* vector) {std::sort(vector->begin(), vector->end()); };
 
 	for (int N = start; N <= end; N += increment)
 	{
@@ -27,7 +27,7 @@ void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int 
 		time_calculation(selSort, container, fileName2);
 		time_calculation(qSort, container, fileName3);
 		time_calculation(qSortMed, container, fileName4);
-		//time_calculation(sort_funk5, container, fileName5);
+		time_calculation(stdSort, container, fileName5);
 		delete container;
 	}
 
@@ -49,6 +49,7 @@ void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* con
 		totalTime += current_time;
 		squareTime += pow(current_time, 2);
 	}
+
 	avgTime = totalTime / samples;
 	dif_time = pow(totalTime, 2) / samples;
 	stdDev = sqrt((squareTime - dif_time) / (samples - 1));
@@ -56,6 +57,8 @@ void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* con
 
 	std::string output = std::to_string(container->size()) + "\t" + std::to_string(avgTime) + "\t" + std::to_string(stdDev) + "\n";
 	write(fileName, output);
+	//K
+	//selectionsort 0.000027
 	write("fit.data", std::to_string(container->size())+"\t"+std::to_string(pow(container->size(), 2)*0.000027)+"\n");
 
 }

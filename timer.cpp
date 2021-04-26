@@ -7,34 +7,70 @@ Labb 2
 */
 #include "timer.h"
 #include <iostream>
-void Timer::start() {
-	 this->startTime = std::chrono::system_clock::now();
+void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end)
+{
+	std::string fileName1 = "insertionSort.data";
+	std::string fileName2 = "selectionSort.data";
+	std::string fileName3 = "quickSort.data";
+	std::string fileName4 = "quickSortMed.data";
+	std::string fileName5 = "stdSort.data";
+	auto insSort = [](std::vector<int>* random) {insertionSort(random); };
+	auto selSort = [](std::vector<int>* random) {selectionSort(random); };
+	auto qSort = [](std::vector<int>* random) {quickSort(random, 0, random->size()-1, false); };
+	auto qSortMed = [](std::vector<int>* random) {quickSort(random, 0, random->size() - 1, true); };
+	//auto sort_funk5 = [](std::vector<int>* random) {std::sort(random->begin(), random->end()); };
+
+	for (int N = start; N <= end; N += 1000)
+	{
+		auto container = generate_data_funk(N);
+		time_calculation(insSort, container, fileName1);
+		//container = generate_data_funk(N);
+		//time_calculation(selSort, container, fileName2);
+		//container = generate_data_funk(N);
+		//time_calculation(qSort, container, fileName3);
+		//container = generate_data_funk(N);
+		//time_calculation(qSortMed, container, fileName4);
+		//container = generate_data_funk(N);
+		//time_calculation(sort_funk5, container, fileName5);
+		delete container;
+	}
+
+
 }
-void Timer::stop() {
-	this->endTime = std::chrono::system_clock::now();
-	this->elapsedSeconds = this->endTime - this->startTime;
-}
-void Timer::timeInterval(int startSize, int times, int samples, int sortFunc) {
-	this->size = samples;
-	Algoritm alg = Algoritm();
-	Generation gen = Generation();
+
+void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* container, std::string fileName)
+{
+	double samples = 5;
+	double squareTime = 0;
 	double totalTime = 0;
-	std::cout << "Quicksort\nN\tT[s]\tStdev[s]\tSamples" << std::endl;
-	for (int i = 1; i <= times; i++) {
-		for (int x = 1; x <= samples; x++) {
-			gen.randomValues(startSize*i);
-			switch (sortFunc) {
-				case 0:
-					this->start();
-					alg.quickSort(gen.dataArray, 0, gen.size - 1, false);
-					this->stop();
-			}
-			totalTime += this->elapsedSeconds.count();
-			this->serie.push_back(this->elapsedSeconds.count());
-		}
-		this->avg = totalTime / this->size;
-		this->stdDev = alg.getStandardDeviation(this->serie, this->avg);
-		std::cout << startSize * i << "\t" << this->avg << "\t" << this->stdDev << "\t" << this->size << std::endl;
-		this->serie.clear();
-	}	
+	double avgTime;
+	double stdDev;
+	double dif_time;
+
+	for (int i = 0; i < samples; i++)
+	{
+		auto current_time = time(sort_funk, container);
+		totalTime += current_time;
+		squareTime += pow(current_time, 2);
+	}
+	avgTime = totalTime / samples;
+	dif_time = pow(totalTime, 2) / samples;
+	stdDev = sqrt((squareTime - dif_time) / (samples - 1));
+
+
+	std::string output = std::to_string(container->size()) + "\t" + std::to_string(avgTime) + "\t" + std::to_string(stdDev) + "\n";
+	write(fileName, output);
+
+}
+float time(void(*sort)(std::vector<int>*), std::vector<int>* vector)
+{
+
+	std::chrono::duration<double, std::milli> time(0);
+
+	auto start = std::chrono::steady_clock::now();
+	sort(vector);
+	auto end = std::chrono::steady_clock::now();
+	time += (end - start);
+
+	return time.count();
 }

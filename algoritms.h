@@ -11,21 +11,14 @@ Labb 2
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
-class Algoritm {
-public:
-	//Insertion sort Knuth https://en.wikipedia.org/wiki/Insertion_sort
-	void insertionSort(int arr[], int size);
-	//Selection sort Knuth https://en.wikipedia.org/wiki/Selection_sort
-	void selectionSort(int arr[], int size);
-	//Quicksort Pivot i partitioneringssteget är höger element. Hoare
-	void quickSort(int arr[], int low, int high, bool median);
-	int partition(int arr[], int low, int high, bool median);
-	//Quicksort Pivot enligt median-of-three. Hoare
-	int medianPivot(int low, int array[], int high);
-	//std::sort
-	//Others
-	bool isMonotonic(bool rising, int arr[], int size);
-	void swap(int* xp, int* yp);
-	double getStandardDeviation(std::vector<double> times, double avg);
-};
+//Insertion sort Knuth https://en.wikipedia.org/wiki/Insertion_sort
+void insertionSort(std::vector<int>* vector);
+//Selection sort Knuth https://en.wikipedia.org/wiki/Selection_sort
+void selectionSort(std::vector<int>* vector);
+//Quicksort Pivot i partitioneringssteget är höger element. Hoare
+void quickSort(std::vector<int>* vector, int low, int high, bool median);
+int partition(std::vector<int>* vector, int low, int high, bool median);
+//Quicksort Pivot enligt median-of-three. Hoare
+int medianPivot(int low, std::vector<int>* vector, int high);
+//std::sort
 #endif

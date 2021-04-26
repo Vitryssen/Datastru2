@@ -10,18 +10,13 @@ Labb 2
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-class Generation {
-public:
-	int* dataArray = 0;
-	int size;
-	//slumpdata ex rand
-	void randomValues(int numberOfValues);
-	//monotont stigande
-	void monotonicIncreasing(int numberOfValues);
-	//monotont fallande
-	void monotonicDecreasing(int numberOfValues);
-	//konstant värde
-	void constantValue(int numberOfValues);
-	void printArray(int[]);
-};
+#include <vector>
+//slumpdata ex rand
+std::vector<int>* randomValues(int numberOfValues);
+//monotont stigande
+std::vector<int>* monotonicIncreasing(int numberOfValues);
+//monotont fallande
+std::vector<int>* monotonicDecreasing(int numberOfValues);
+//konstant värde
+std::vector<int>* constantValue(int numberOfValues);
 #endif

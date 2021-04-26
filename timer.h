@@ -17,21 +17,19 @@ Vanliga misstag är
 */
 #ifndef TIMER_H
 #define TIMER_H
+#include "time.h"
+#include <cmath>
+#include <algorithm>
+#include <string>
 #include <chrono>
-#include "algoritms.h"
+#include <iostream>
+#include <fstream>
+#include <cmath>
 #include "generation.h"
-#include <vector>
-class Timer {
-	public:
-		std::chrono::time_point<std::chrono::system_clock> startTime;
-		std::chrono::time_point<std::chrono::system_clock> endTime;
-		std::chrono::duration<double> elapsedSeconds;
-		double avg;
-		double stdDev;
-		int size;
-		std::vector<double> serie;
-		void start();
-		void stop();
-		void timeInterval(int startSize, int times, int samples, int sortFunc);
-};
+#include "algoritms.h"
+#include "output.h"
+//void timeInterval(void(), int startSize, int times, int samples, int sortFunc);
+void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end);
+void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* container, std::string save_data);
+float time(void(*sort)(std::vector<int>*), std::vector<int>* container);
 #endif

@@ -7,52 +7,41 @@ Labb 2
 */
 #include "generation.h"
 
-void Generation::randomValues(int numberOfValues)
+std::vector<int>* randomValues(int numberOfValues)
 {
-	this->size = numberOfValues;
-	this->dataArray = new int[numberOfValues];
+	std::vector<int>* randomValues = new std::vector<int>;
 	for (int i = 0; i < numberOfValues; i++) {
-		this->dataArray[i] = rand();
+		randomValues->push_back(rand());
 	}
+	return randomValues;
 }
 
-void Generation::monotonicIncreasing(int numberOfValues)
+std::vector<int>* monotonicIncreasing(int numberOfValues)
 {
-	this->size = numberOfValues;
-	this->dataArray = new int[numberOfValues];
+	std::vector<int>* monotonicIncreasing = new std::vector<int>;
+	monotonicIncreasing->push_back(0);
+	for (int i = 1; i < numberOfValues; i++) {
+		monotonicIncreasing->push_back(rand() % 10 + monotonicIncreasing->at(i-1));
+	}
+	return monotonicIncreasing;
+}
 
+std::vector<int>* monotonicDecreasing(int numberOfValues)
+{
+	std::vector<int>* monotonicDecreasing = new std::vector<int>;
+	monotonicDecreasing->push_back(INT_MAX);
+	for (int i = 1; i < numberOfValues; i++) {
+		monotonicDecreasing->push_back(monotonicDecreasing->at(i-1) - (rand() % 10));
+	}
+	return monotonicDecreasing;
+}
+
+std::vector<int>* constantValue(int numberOfValues)
+{
+	std::vector<int>* constantValue = new std::vector<int>;
+	int value = rand();
 	for (int i = 0; i < numberOfValues; i++) {
-		if (i == 0)
-			dataArray[i] = 0;
-		else
-			dataArray[i] = rand() % 10 + dataArray[i - 1];
+		constantValue->push_back(value);
 	}
-}
-
-void Generation::monotonicDecreasing(int numberOfValues)
-{
-	this->size = numberOfValues;
-	this->dataArray = new int[numberOfValues];
-	for (int i = 0; i < numberOfValues; i++) {
-		if (i == 0)
-			dataArray[i] = INT_MAX;
-		else
-			dataArray[i] = dataArray[i - 1] - (rand() % 10);
-	}
-}
-
-void Generation::constantValue(int numberOfValues)
-{
-	int constantValue = rand();
-	this->dataArray = new int[numberOfValues];
-	for (int i = 0; i < numberOfValues; i++)
-		dataArray[i] = constantValue;
-}
-
-void Generation::printArray(int arr[])
-{
-	for (int i = 0; i < this->size; i++) {
-		std::cout << arr[i] << " ";
-	}
-	std::cout << std::endl;
+	return constantValue;
 }

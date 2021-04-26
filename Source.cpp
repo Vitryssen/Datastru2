@@ -12,8 +12,15 @@ Labb 2
 #include <iostream>
 int main() {
 	srand(time(NULL));
+	
+	auto random = [](int N) {std::vector<int>* data = randomValues(N); return data; };
+	auto increasing = [](int N) {std::vector<int>* data = monotonicIncreasing(N); return data; };
+	auto decreasing = [](int N) {std::vector<int>* data = monotonicDecreasing(N); return data; };
+	auto constant = [](int N) {std::vector<int>* data = constantValue(N); return data; };
 
-	Timer timer = Timer();
-	timer.timeInterval(20000, 10, 5, 0);
+	int start = 1000;
+	int end = 10000;
 
+	time_all(random, start, end);
+	return 0;
 }

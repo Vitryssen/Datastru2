@@ -11,6 +11,9 @@ Du har två alternativ för att åstadkomma det:
 2. Spara medelvärdet och standardavvikelsen för varje mätpunkt. Du behöveräven spara antal mätningar och annan relevant data.
 Exempel på 2. https://gyazo.com/f78ddaa9e47b1cfe88620fceb8a92838
 */
+#include <fstream>
 #ifndef OUTPUT_H
 #define OUTPUT_H
+void clearFile(std::string filename);
+void write(std::string filename, std::string output);
 #endif

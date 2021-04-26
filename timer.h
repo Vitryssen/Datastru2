@@ -29,7 +29,7 @@ Vanliga misstag är
 #include "algoritms.h"
 #include "output.h"
 //void timeInterval(void(), int startSize, int times, int samples, int sortFunc);
-void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end);
+void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end, int increment);
 void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* container, std::string save_data);
 float time(void(*sort)(std::vector<int>*), std::vector<int>* container);
 #endif

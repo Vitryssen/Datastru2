@@ -7,7 +7,7 @@ Labb 2
 */
 #include "timer.h"
 #include <iostream>
-void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end)
+void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int end, int increment)
 {
 	std::string fileName1 = "insertionSort.data";
 	std::string fileName2 = "selectionSort.data";
@@ -20,17 +20,13 @@ void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int 
 	auto qSortMed = [](std::vector<int>* random) {quickSort(random, 0, random->size() - 1, true); };
 	//auto sort_funk5 = [](std::vector<int>* random) {std::sort(random->begin(), random->end()); };
 
-	for (int N = start; N <= end; N += 1000)
+	for (int N = start; N <= end; N += increment)
 	{
 		auto container = generate_data_funk(N);
 		time_calculation(insSort, container, fileName1);
-		//container = generate_data_funk(N);
-		//time_calculation(selSort, container, fileName2);
-		//container = generate_data_funk(N);
-		//time_calculation(qSort, container, fileName3);
-		//container = generate_data_funk(N);
-		//time_calculation(qSortMed, container, fileName4);
-		//container = generate_data_funk(N);
+		time_calculation(selSort, container, fileName2);
+		time_calculation(qSort, container, fileName3);
+		time_calculation(qSortMed, container, fileName4);
 		//time_calculation(sort_funk5, container, fileName5);
 		delete container;
 	}
@@ -60,15 +56,17 @@ void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* con
 
 	std::string output = std::to_string(container->size()) + "\t" + std::to_string(avgTime) + "\t" + std::to_string(stdDev) + "\n";
 	write(fileName, output);
+	write("fit.data", std::to_string(container->size())+"\t"+std::to_string(pow(container->size(), 2)*0.000027)+"\n");
 
 }
 float time(void(*sort)(std::vector<int>*), std::vector<int>* vector)
 {
 
 	std::chrono::duration<double, std::milli> time(0);
+	auto copy_vector = *vector;
 
 	auto start = std::chrono::steady_clock::now();
-	sort(vector);
+	sort(&copy_vector);
 	auto end = std::chrono::steady_clock::now();
 	time += (end - start);
 

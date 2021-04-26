@@ -19,8 +19,8 @@ int main() {
 	auto constant = [](int N) {std::vector<int>* data = constantValue(N); return data; };
 
 	int start = 1000;
-	int end = 10000;
+	int end = 5000;
 
-	time_all(random, start, end);
+	time_all(random, start, end, 500);
 	return 0;
 }

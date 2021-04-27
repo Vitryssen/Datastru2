@@ -11,12 +11,31 @@ Labb 2
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
-//slumpdata ex rand
+/// <summary>
+/// Generates random values
+/// </summary>
+/// <param name="numberOfValues">number of values to generate</param>
+/// <returns>pointer to vector with generated values</returns>
 std::vector<int>* randomValues(int numberOfValues);
-//monotont stigande
+
+/// <summary>
+/// Generates monotonic increasing values starting from 0
+/// </summary>
+/// <param name="numberOfValues">number of values to generate</param>
+/// <returns>pointer to vector with generated values</returns>
 std::vector<int>* monotonicIncreasing(int numberOfValues);
-//monotont fallande
+
+/// <summary>
+/// Generates monotonic decreasing values starting from INT_MAX
+/// </summary>
+/// <param name="numberOfValues">number of values to generate</param>
+/// <returns>pointer to vector with generated values</returns>
 std::vector<int>* monotonicDecreasing(int numberOfValues);
-//konstant värde
+
+/// <summary>
+/// Generates constant values, first value given from rand()
+/// </summary>
+/// <param name="numberOfValues">number of values to generate</param>
+/// <returns>pointer to vector with generated values</returns>
 std::vector<int>* constantValue(int numberOfValues);
 #endif

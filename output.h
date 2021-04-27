@@ -14,6 +14,16 @@ Exempel på 2. https://gyazo.com/f78ddaa9e47b1cfe88620fceb8a92838
 #include <fstream>
 #ifndef OUTPUT_H
 #define OUTPUT_H
+/// <summary>
+/// Clears file from data with given filename
+/// </summary>
+/// <param name="filename"></param>
 void clearFile(std::string filename);
+
+/// <summary>
+/// Writes given output to given filename
+/// </summary>
+/// <param name="filename"></param>
+/// <param name="output"></param>
 void write(std::string filename, std::string output);
 #endif

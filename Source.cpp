@@ -21,7 +21,7 @@ int main() {
 	int start = 1000;
 	int end = 10000;
 	int increment = 1000;
-	time_all(random, start, end, increment);
+	time_all(decreasing, start, end, increment);
 
 	return 0;
 }

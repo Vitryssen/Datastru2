@@ -27,8 +27,6 @@ void time_all(std::vector<int>* (*generate_data_funk)(int size), int start, int 
 		time_calculation(stdSort, container, fileNames[4]);
 		delete container;
 	}
-
-
 }
 
 void time_calculation(void(*sort_funk)(std::vector<int>*), std::vector<int>* container, std::string fileName)

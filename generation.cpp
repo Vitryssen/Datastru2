@@ -1,5 +1,5 @@
 /*
-2021-04-19
+2021-04-27
 André Nordlund
 anno1907
 Datastrukturer och algoritmer DT046G
@@ -21,7 +21,7 @@ std::vector<int>* monotonicIncreasing(int numberOfValues)
 	std::vector<int>* monotonicIncreasing = new std::vector<int>;
 	monotonicIncreasing->push_back(0);
 	for (int i = 1; i < numberOfValues; i++) {
-		monotonicIncreasing->push_back(rand() % 10 + monotonicIncreasing->at(i-1));
+		monotonicIncreasing->push_back(rand() % 10 + monotonicIncreasing->at(i-1.0));
 	}
 	return monotonicIncreasing;
 }
@@ -31,7 +31,7 @@ std::vector<int>* monotonicDecreasing(int numberOfValues)
 	std::vector<int>* monotonicDecreasing = new std::vector<int>;
 	monotonicDecreasing->push_back(INT_MAX);
 	for (int i = 1; i < numberOfValues; i++) {
-		monotonicDecreasing->push_back(monotonicDecreasing->at(i-1) - (rand() % 10));
+		monotonicDecreasing->push_back(monotonicDecreasing->at(i-1.0) - (rand() % 10));
 	}
 	return monotonicDecreasing;
 }

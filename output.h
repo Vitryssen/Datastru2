@@ -1,5 +1,5 @@
 /*
-2021-04-19
+2021-04-27
 André Nordlund
 anno1907
 Datastrukturer och algoritmer DT046G
@@ -12,13 +12,14 @@ Du har två alternativ för att åstadkomma det:
 Exempel på 2. https://gyazo.com/f78ddaa9e47b1cfe88620fceb8a92838
 */
 #include <fstream>
+#include <vector>
 #ifndef OUTPUT_H
 #define OUTPUT_H
 /// <summary>
 /// Clears file from data with given filename
 /// </summary>
 /// <param name="filename"></param>
-void clearFile(std::string filename);
+void clearFiles(std::vector<std::string> fileNames);
 
 /// <summary>
 /// Writes given output to given filename

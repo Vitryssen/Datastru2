@@ -1,5 +1,5 @@
 /*
-2021-04-19
+2021-04-27
 André Nordlund
 anno1907
 Datastrukturer och algoritmer DT046G
@@ -19,8 +19,9 @@ int main() {
 	auto constant = [](int N) {std::vector<int>* data = constantValue(N); return data; };
 
 	int start = 1000;
-	int end = 5000;
+	int end = 10000;
+	int increment = 1000;
+	time_all(random, start, end, increment);
 
-	time_all(random, start, end, 500);
 	return 0;
 }

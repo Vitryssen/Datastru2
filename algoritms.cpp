@@ -1,5 +1,5 @@
 /*
-2021-04-19
+2021-04-27
 André Nordlund
 anno1907
 Datastrukturer och algoritmer DT046G
@@ -28,14 +28,14 @@ void insertionSort(std::vector<int>* vector)
 		key = vector->at(i);
 		index = i - 1;
 
-		/* Move elements of arr[0..i-1], that are
-		greater than key, to one position ahead
-		of their current position */
+		//If value at index is bigger than key
+		//set next index value to current index value
 		while (index >= 0 && vector->at(index) > key)
 		{
 			vector->at(index+1.0) = vector->at(index);
 			index = index - 1;
 		}
+		//Set the previous index to key value
 		vector->at(index+1.0) = key;
 	}
 }
@@ -82,11 +82,13 @@ void selectionSort(std::vector<int>* vector)
 		min_index = i;
 		for (compareindex = i + 1; compareindex < vector->size(); compareindex++)
 		{
-			if ((*vector)[compareindex] < (*vector)[min_index])
+			//If compare value is smaller than min, set min to compare value
+			if (vector->at(compareindex) < vector->at(min_index))
 			{
 				min_index = compareindex;
 			}
 		}
-		std::swap((*vector)[i], (*vector)[min_index]);
+		//swap current index with min index, so min index is leftmost element
+		std::swap(vector->at(i), vector->at(min_index));
 	}
 }

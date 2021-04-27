@@ -1,19 +1,21 @@
 /*
-2021-04-19
+2021-04-27
 André Nordlund
 anno1907
 Datastrukturer och algoritmer DT046G
 Labb 2
 */
 #include "output.h"
-void clearFile(std::string filename) {
+void clearFiles(std::vector<std::string> fileNames) {
     std::ofstream myfile;
-    myfile.open(filename, std::ios::out);
-    if (myfile.is_open())
-    {
-        myfile << "";
+    for (int i = 0; i < fileNames.size(); i++) {
+        myfile.open(fileNames.at(i), std::ios::out | std::ios::trunc);
+        if (myfile.is_open())
+        {
+            myfile << "#"+fileNames.at(i).erase(fileNames.at(i).size()-5, 5) << "\n" << "#N\tT[ms]\t\tStdev[ms]\tSamples\n";
+        }
+        myfile.close();
     }
-    myfile.close();
 }
 void write(std::string filename, std::string output)
 {
